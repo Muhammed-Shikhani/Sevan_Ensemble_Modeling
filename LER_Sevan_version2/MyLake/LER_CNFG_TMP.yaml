@@ -1,0 +1,171 @@
+location:
+   name: Sevan
+   latitude: 53.9
+   longitude: -9.5
+   elevation: 1905
+   depth: 83
+   hypsograph: LakeEnsemblR_bathymetry_standard.csv
+   init_depth: 77.8
+time:
+   start: 2008-01-31 00:00:00
+   stop: 2010-01-01 00:00:00
+   time_step: 3600.0
+config_files:
+   GOTM: GOTM/gotm.yaml
+   GLM: GLM/glm3.nml
+   Simstrat: Simstrat/simstrat.par
+   FLake: FLake/flake.nml
+   MyLake: MyLake/mylake.Rdata
+observations:
+   temperature:
+      file: LakeEnsemblR_wtemp_profile_standard.csv
+   ice_height:
+      file: ~
+input:
+   init_temp_profile:
+      file: ~
+   meteo:
+      file: LakeEnsemblR_meteo_standard.csv
+   light:
+      Kw: 0.35
+   ice:
+      use: yes
+inflows:
+   use: no
+   file: LakeEnsemblR_inflow_standard.csv
+   scale_param: 1.0
+   mass-balance: yes
+output:
+   file: ensemble_output
+   format: netcdf
+   depths: 0.5
+   compression: 4
+   time_unit: hour
+   time_step: 24
+   time_method: mean
+   variables:
+   - temp
+   - ice_height
+scaling_factors:
+   all:
+      wind_speed: 1.0
+      swr: 1.0
+   FLake:
+      wind_speed: 1.0
+      swr: 1.0
+   GLM:
+      wind_speed: 1.0
+      swr: 1.0
+   GOTM:
+      wind_speed: 1.0
+      swr: 1.0
+   Simstrat:
+      wind_speed: 1.0
+      swr: 1.0
+   MyLake:
+      wind_speed: 1.0
+      swr: 1.0
+model_parameters:
+   FLake:
+      fetch_lk: 75000
+      c_relax_C: 0.0089064
+   GLM:
+      bsn_len: 75000
+      bsn_wid: 32000
+      mixing/coef_mix_hyp: 0.15271
+      mixing/coef_mix_KH: 0.31674
+      meteorology/ch: 0.0027525
+      meteorology/ce: 0.0029211
+   GOTM:
+      'turb_param/k_min:': 2.1436e-06
+      g2/constant_value: 3.2875
+      g1/constant_value: 0.6
+      A/constant_value: 0.9
+   Simstrat:
+      a_seiche: 0.071909
+   MyLake:
+      Phys.par/C_shelter: 0.18404
+      Phys.par/Kz_ak: 0.055298
+      Phys.par/Kz_ak_ice: 0.0087897
+calibration:
+   met:
+      wind_speed:
+         lower: 0.8
+         upper: 1.2
+         initial: 1
+         log: no
+   FLake:
+      fetch_lk:
+         lower: 50000
+         upper: 75000
+         initial: 60000
+         log: no
+      c_relax_C:
+         lower: 1.0e-05
+         upper: 0.1
+         initial: 0.0006
+         log: no
+   GLM:
+      mixing/coef_mix_hyp:
+         lower: 1E-7
+         upper: 1E-2
+         initial: 1E-4
+         log: no
+      mixing/coef_mix_KH:
+         lower: 0.1
+         upper: 0.9
+         initial: 0.3
+         log: no
+      meteorology/ch:
+         lower: 0.001
+         upper: 0.003
+         initial: 0.0013
+         log: no
+      meteorology/ce:
+         lower: 0.001
+         upper: 0.003
+         initial: 0.0013
+         log: no
+   GOTM:
+      turb_param/k_min:
+         lower: 5E-15
+         upper: 5E-4
+         initial: 4E-6
+         log: yes
+      g2/constant_value:
+         lower: 0.5
+         upper: 3.5
+         initial: 3.4
+         log: no
+      g1/constant_value:
+         lower: 0.4
+         upper: 0.8
+         initial: 0.6
+         log: no
+      A/constant_value:
+         lower: 0.7
+         upper: 1.1
+         initial: 0.9
+         log: no
+   Simstrat:
+      a_seiche:
+         lower: 8.0e-08
+         upper: 0.3
+         initial: 0.07
+         log: no
+   MyLake:
+      Phys.par/C_shelter:
+         lower: 0.1
+         upper: 0.2
+         initial: 0.15
+         log: no
+      Phys.par/Kz_ak:
+         lower: 0.0030752
+         upper: 0.3075216
+         initial: 0.0307522
+         log: no
+      Phys.par/Kz_ak_ice:
+         lower: 8.98e-05
+         upper: 0.00898
+         initial: 0.000898
+         log: no
