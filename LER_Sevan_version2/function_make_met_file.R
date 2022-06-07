@@ -1,9 +1,7 @@
 
 make_met_file <- function(list_name){
   
-  list_name <- get(load("/home/shikhani/Documents/CORDEX_2021/ERA5_daily_Lake_Sevan_1979_2020_interpolated_allvars_updatedps.rda"))
-
-  df_meteo <- data.frame('datetime' = list_name$uas$Dates$start,
+  df_meteo <- data.frame('datetime' = paste0(c(my_dates,my_dates[length(my_dates)]+1), " 00:00:00"),
                          'Ten_Meter_Uwind_vector_meterPerSecond' = list_name$uas$Data,
                          'Ten_Meter_Vwind_vector_meterPerSecond' = list_name$vas$Data,
                          'Surface_Level_Barometric_Pressure_pascal' = list_name$ps$Data,

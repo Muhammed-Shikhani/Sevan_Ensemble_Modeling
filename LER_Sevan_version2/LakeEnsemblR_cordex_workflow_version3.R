@@ -1,12 +1,12 @@
 library(yaml)
 library(LakeEnsemblR)
 library(gotmtools)
-setwd( "/home/shikhani/Documents/LER_Sevan_trial/")
-dir.data <- "/home/shikhani/Documents/CORDEX_2021/rdata/rdata_example_LER/"
-rdata_files <- list.files( "/home/shikhani/Documents/CORDEX_2021/rdata/rdata_example_LER/")
-rdata_files <- rdata_files[1:2]
+setwd( "/home/shikhani/Sevan_Ensemble_Modeling/LER_Sevan_version2/")
+dir.data <- "/home/shikhani/Sevan_Ensemble_Modeling/LER_Sevan_version2/rdata_example_LER/"
+rdata_files <- list.files( "/home/shikhani/Sevan_Ensemble_Modeling/LER_Sevan_version2/rdata_example_LER/")
+rdata_files <- rdata_files[6]
 length(rdata_files)
-sim_folder <- "/home/shikhani/Documents/LER_Sevan_trial/"
+sim_folder <- "/home/shikhani/Sevan_Ensemble_Modeling/LER_Sevan_version2/"
 yaml_file <- file.path(sim_folder,'LakeEnsemblR.yaml')
 yaml_vlaues <- read_yaml(yaml_file)
 model <- c("FLake", "GLM", "GOTM", "Simstrat", "MyLake")
