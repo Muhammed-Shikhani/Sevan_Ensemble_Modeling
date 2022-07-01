@@ -7,8 +7,8 @@ location:
    hypsograph: LakeEnsemblR_bathymetry_standard.csv         # hypsograph [csv file]
    init_depth: 77.8                             # initial height of lake surface relative to the bottom [m]
 time:
-   start: 1970-01-01 00:00:00 # start date and time [yyyy-mm-dd HH:MM:SS]
-   stop: 2005-12-30 00:00:00 #2016-01-01 00:00:00                    # stop date and time [yyyy-mm-dd HH:MM:SS]
+   start: 2006-01-01 00:00:00 # start date and time [yyyy-mm-dd HH:MM:SS]
+   stop: 2100-12-30 00:00:00 #2016-01-01 00:00:00                    # stop date and time [yyyy-mm-dd HH:MM:SS]
    time_step: 3600.0                            # time step for integration [s; min=0.0]
 config_files:
    GOTM: GOTM/gotm.yaml                         # GOTM config file [yaml file]
@@ -35,17 +35,17 @@ inflows:
    file: LakeEnsemblR_inflow_standard.csv       # file with inflow data, with column headers according to LakeEnsemblR vocabulary [csv file; must be provided if inflows -> use is true]
    scale_param: 1.0                             # scaling factor for discharge in inflow, for example to correct for the percentage of catchment area drained by the inflow
    number_inflows: 1                            # number of inflows in the inflow file
-   fix_wlvl: false                              # Sets the water level in GOTM to a constant value. Reproduces LakeEnsemblR v1.0.0 behaviour.
+   fix_wlvl: true                              # Sets the water level in GOTM to a constant value. Reproduces LakeEnsemblR v1.0.0 behaviour.
 outflows:
    use: true                                    # use outflows? [true/false]
    file: LakeEnsemblR_outflow_standard.csv      # file with outflow data, with column headers according to LakeEnsemblR vocabulary [csv file; must be provided if outflows -> use is true]
    number_outflows: 1                           # number of outflows in the outflow file
    outflow_lvl: -1                              # height of the outflow above the ground. If the outflow is a surface outflow use "-1". If there are more than one outflow in the outflow file, this must be a list with one value per outflow                          # enforce pseudo mass-balance by adding an artifical outflow for every inflow [true/false]
 output:
-   file: ensemble_output_MNA-44_ICHEC-EC-EARTH_SMHI-RCA4_historical # name of output file, excluding extension
+   file: ensemble_output_MyLake_MNA-44_NOAA-GFDL-GFDL-ESM2M_SMHI-RCA4_rcp85 # name of output file, excluding extension
    format: netcdf                               # format [text/netcdf]
-   depths: 0.5                                  # depths to extract output [m]
-   compression: 4                               # set to an integer between 1 (least compression) and 9 (most compression), this enables compression for the variable as it is written to the file
+   depths: 2                                  # depths to extract output [m]
+   compression: 8                               # set to an integer between 1 (least compression) and 9 (most compression), this enables compression for the variable as it is written to the file
    max_members: 100                              # maximum number of members of the same model that can be added to the netcdf
    time_unit: hour                              # time unit [second, hour, day]
    time_step: 24                                # number of time units between output [min=1]
@@ -54,50 +54,50 @@ output:
       - temp
       - ice_height
       - w_level
-scaling_factors:                                # scaling factors to apply to meteorological input, either for all models or model-specific. If not specified, no scaling is applied. If both "all" and model-specific are specified for a certain model, only the model-specific scaling is applied.
+scaling_factors:
    all:
-      wind_speed: 1.0
-      swr: 1.0
+      outflow: 0
+      inflow: 0
    FLake:
-      wind_speed: 1.159 
-      swr: 0.81911
+      wind_speed: 1.0707 
+      swr: 0.80025 
    GLM:
-      wind_speed: 1.1574
-      swr: 0.80019
+      wind_speed: 1.1987 
+      swr: 0.80275 
    GOTM:
-      wind_speed: 0.98358
-      swr: 1.1914
+      wind_speed: 1.0904 
+      swr: 1.1957 
    Simstrat:
-      wind_speed: 1.1855
-      swr: 0.84478
+      wind_speed: 0.99905 
+      swr: 0.94351 
    MyLake:
-      wind_speed: 1.1992
-      swr: 0.85381
+      wind_speed: 1.0832 
+      swr: 0.85299 
 model_parameters:
    FLake:                                       # FLake specific parameters
-      fetch_lk: 47094                          # typical wind fetch [m]
-      c_relax_C: 0.0011092
+      fetch_lk: 29230 # typical wind fetch [m]
+      c_relax_C: 0.0058265 
    GLM:                                         # GLM specific parameters
       bsn_len: 75000 #3678                             # length of the lake basin, at crest height [m]
       bsn_wid: 32000 #944                              # width of the lake basin, at crest height [m]
-      mixing/coef_mix_hyp: 6.5556e-05 
- #    mixing/coef_mix_KH: 0.3
- #    mixing/coef_wind_stir: 0.48794
-      light/Kw: 0.28337
+      mixing/coef_mix_hyp: 5.9879e-05 
+      light/Kw: 0.25826 
       meteorology/ch: 0.0013
       meteorology/ce: 0.0013
       meteorology/cd: 0.0013
    GOTM:                                        # GOTM specific parameters
-      turb_param/k_min:: 3.0351E-06                              # minimum turbulent kinetic energy [m^2/s^2; min=0.0]
-      g2/constant_value: 2.5263
-      g1/constant_value: 0.68214
-      A/constant_value: 0.73756
+      k_min: 3.0648e-06 
+      g2/constant_value: 3.1921 
+      g1/constant_value: 0.72828 
+      A/constant_value: 0.79369 
    Simstrat:                                    # Simstrat specific parameters
-      a_seiche: 0.047795
+      a_seiche: 0.070753 
+      q_nn: 0.95698 
+      k_min: 1.468e-06 
    MyLake:                                      # MyLake specific parameters
-      Phys.par/C_shelter: 0.18578                  # wind sheltering coefficient [min=0; max=1; if not specified, C_shelter=1.0-exp(-0.3*surface_area)]
-      Phys.par/Kz_ak: 0.055739
-      Phys.par/Kz_ak_ice: 0.0008124
+      Phys.par/C_shelter: 0.1014 
+      Phys.par/Kz_ak: 0.056226 
+      Phys.par/Kz_ak_ice: 0.0054412 
 calibration:                                    # calibration section
    met:                                         # meteo scaling parameter
       wind_speed:                               # wind speed scaling
