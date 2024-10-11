@@ -9,7 +9,8 @@ The CORDEX data used in this project can be freely retrieved from the ESGF porta
 Repository Structure
 
 This repository contains: 
-    -  Model Setup and Input Data: Configuration files for the LakeEnsemblR models and all the required input data.    
+     
+   -   Model Setup and Input Data: Configuration files for the LakeEnsemblR models and all the required input data.  
    -  Calibration and Validation Outputs: The results from the calibration and validation of the models.
    -  Annual Aggregated Outputs: Processed output files providing annual aggregated results.
    -  Preprocessing and Bias Correction Codes: Scripts used to preprocess, regrid, and bias-correct the CORDEX and ERA5 data.
