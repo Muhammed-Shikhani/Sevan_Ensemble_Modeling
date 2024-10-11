@@ -1,5 +1,7 @@
 # Sevan_Ensemble_Modeling
 This repository contains the setup and workflow for the project "Combining a Multi-Lake Model Ensemble and a Multi-Domain CORDEX Climate Data Ensemble for Assessing Climate Change Impacts on Lake Sevan" by Shikhani et al., 2024, published in Water Resources Research.
+
+
 Project Overview
 
 The project integrates CORDEX climate data from three different domains (MNA, WAS, CAS) with five 1D lake hydrodynamic models available through the LakeEnsemblR open-source platform. This modeling framework is used to evaluate the impact of climate change on Lake Sevan.
