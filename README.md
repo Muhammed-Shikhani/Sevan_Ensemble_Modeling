@@ -8,14 +8,14 @@ CORDEX Data
 The CORDEX data used in this project can be freely retrieved from the ESGF portal. These datasets were used to force the models along with ERA5 reanalysis data. However, to avoid conflicts with already published data, ERA5 and CORDEX data are not uploaded to this repository.
 Repository Structure
 
-This repository contains:
-
-    Model Setup and Input Data: Configuration files for the LakeEnsemblR models and all the required input data.
+This repository contains: 
+     Model Setup and Input Data: Configuration files for the LakeEnsemblR models and all the required input data.
     Calibration and Validation Outputs: The results from the calibration and validation of the models.
     Annual Aggregated Outputs: Processed output files providing annual aggregated results.
     Preprocessing and Bias Correction Codes: Scripts used to preprocess, regrid, and bias-correct the CORDEX and ERA5 data.
     Workflow Codes: Codes implementing the workflow for running the ensemble of lake models.
     Figure Generation Codes: Scripts used to generate figures for the manuscript and supplementary information.
+
 
 Data Usage
 
