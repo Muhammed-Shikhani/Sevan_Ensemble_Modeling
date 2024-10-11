@@ -5,7 +5,7 @@ Project Overview
 The project integrates CORDEX climate data from three different domains (MNA, WAS, CAS) with five 1D lake hydrodynamic models available through the LakeEnsemblR open-source platform. This modeling framework is used to evaluate the impact of climate change on Lake Sevan.
 CORDEX Data
 
-The CORDEX data used in this project can be freely retrieved from the ESGF portal. These datasets were used to force the models along with ERA5 reanalysis data. However, to avoid conflicts with already published data, ERA5 and CORDEX data are not uploaded to this repository.
+The CORDEX data used in this project can be freely retrieved from the ESGF portal. These datasets were used to force the models along with ERA5 reanalysis data. However, to avoid conflicts with already published data, LakesCCI Ice cover, ERA5 and CORDEX data are not uploaded to this repository.
 Repository Structure
 
 This repository contains: 
